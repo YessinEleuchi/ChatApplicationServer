@@ -16,7 +16,6 @@ public class Message {
     @GeneratedValue(UUIDStringGenerator.class)
     private String id;
 
-    // Means: (User)-[:SENT_BY]->(Message)
     @Relationship(type = "SENT_BY", direction = Relationship.Direction.INCOMING)
     private User sender;
 

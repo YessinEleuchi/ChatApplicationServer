@@ -10,6 +10,7 @@ import java.util.Optional;
 public interface UserRepository extends Neo4jRepository<User, String> {
 
     Optional<User> findByEmail(String email);
+    User findUserById(String userId);
 
     boolean existsByEmail(String email);
 }

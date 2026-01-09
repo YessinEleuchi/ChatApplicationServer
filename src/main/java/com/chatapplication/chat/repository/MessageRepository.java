@@ -10,6 +10,9 @@ import java.util.List;
 @Repository
 public interface MessageRepository extends Neo4jRepository<Message, String> {
 
-    @Query("MATCH (m:Message) WHERE m.userId = $userId RETURN m ORDER BY m.timestamp ASC")
-    List<Message> findByUserIdOrderByTimestampAsc(String userId);
+    @Query("""
+    MATCH (u:User {id: $userId})-[:SENT_BY]->(m:Message)
+    RETURN m ORDER BY m.timestamp ASC
+    """)
+    List<Message> findHistoryByUserId(String userId);
 }

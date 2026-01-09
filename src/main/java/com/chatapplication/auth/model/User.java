@@ -23,7 +23,7 @@ public class User {
 
     @Relationship(type = "HAS_REFRESH_TOKEN", direction = Relationship.Direction.OUTGOING)
     private List<RefreshTokenNode> refreshTokens = new ArrayList<>();
-    @Relationship(type = "WROTE")
+    @Relationship(type = "SENT_BY", direction = Relationship.Direction.OUTGOING)
     private List<Message> messages = new ArrayList<>();
 
     public User() {

@@ -26,16 +26,14 @@ public class ChatController {
     public ResponseEntity<ChatResponse> sendMessage(
             @Valid @RequestBody ChatRequest request,
             Authentication authentication) {
-
         AuthenticatedUser user = (AuthenticatedUser) authentication.getPrincipal();
         ChatResponse response = chatService.sendMessage(user.userId(), request.prompt());
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/history")
-    public ResponseEntity<List<MessageDto>> getHistory(Authentication authentication) {
+    public List<MessageDto> history(Authentication authentication) {
         AuthenticatedUser user = (AuthenticatedUser) authentication.getPrincipal();
-        List<MessageDto> history = chatService.getHistory(user.userId());
-        return ResponseEntity.ok(history);
+        return chatService.getHistory(user.userId());
     }
 }
